@@ -51,15 +51,25 @@ measurement_points = 20
   # point_tier = 4
 # endif
 
+form Test command line calls
+    sentence WavFile /content/cantonese-tone-passage/sample/Northwind_Sun.wav
+    sentence TgFile /content/cantonese-tone-passage/output/Northwind_Sun.TextGrid
+endform
+
+if wavFile$ = ""
+  wavFile$ = "/content/cantonese-tone-passage/sample/Northwind_Sun.wav"
+endif
+if tgFile$ = ""
+  tgFile$ = "/content/cantonese-tone-passage/output/Northwind_Sun.TextGrid"
+endif
+
 # Get the name of the files
 # wavFile$ = chooseReadFile$: "Open your sound file"
-wavFile$ = "/content/cantonese-tone-passage/input/Northwind_Sun.wav"
 if wavFile$ <> ""
     wav = Open long sound file: wavFile$
 endif
 
 # tgFile$ = chooseReadFile$: "Open your TextGrid file"
-tgFile$ = "/content/cantonese-tone-passage/output/Northwind_Sun.TextGrid"
 if tgFile$ <> ""
     tg = Read from file: tgFile$
 endif
