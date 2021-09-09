@@ -20,7 +20,22 @@
 #   boolean Select_TG_tiers 0
 #  endform
 
-file_name$ = "Test"
+
+form Test command line calls
+    sentence WavFile /content/cantonese-tone-passage/sample/Northwind_Sun.wav
+    sentence TgFile /content/cantonese-tone-passage/output/Northwind_Sun.TextGrid
+    sentence File_name = Northwind_Sun
+endform
+
+if wavFile$ = ""
+  wavFile$ = "/content/cantonese-tone-passage/sample/Northwind_Sun.wav"
+endif
+if tgFile$ = ""
+  tgFile$ = "/content/cantonese-tone-passage/output/Northwind_Sun.TextGrid"
+endif
+if file_name$ = ""
+  file_name$ ="Northwind_Sun"
+endif
 
 pitch_min = 75
 pitch_max = 500
@@ -50,18 +65,6 @@ measurement_points = 20
   phon_tier = 2
   # point_tier = 4
 # endif
-
-form Test command line calls
-    sentence WavFile /content/cantonese-tone-passage/sample/Northwind_Sun.wav
-    sentence TgFile /content/cantonese-tone-passage/output/Northwind_Sun.TextGrid
-endform
-
-if wavFile$ = ""
-  wavFile$ = "/content/cantonese-tone-passage/sample/Northwind_Sun.wav"
-endif
-if tgFile$ = ""
-  tgFile$ = "/content/cantonese-tone-passage/output/Northwind_Sun.TextGrid"
-endif
 
 # Get the name of the files
 # wavFile$ = chooseReadFile$: "Open your sound file"
@@ -208,7 +211,7 @@ for x to nInt
     
 endfor
 
-#removeObject: tg
+removeObject: tg
 removeObject: wav
 
 appendInfoLine: "Finished!"
