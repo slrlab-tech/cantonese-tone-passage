@@ -25,6 +25,8 @@ form Test command line calls
     sentence WavFile /content/cantonese-tone-passage/sample/Northwind_Sun.wav
     sentence TgFile /content/cantonese-tone-passage/output/Northwind_Sun.TextGrid
     sentence File_name = Northwind_Sun
+    natural Pitch_min 75
+    natural Pitch_max 500
 endform
 
 if wavFile$ = ""
@@ -37,8 +39,7 @@ if file_name$ = ""
   file_name$ ="Northwind_Sun"
 endif
 
-pitch_min = 75
-pitch_max = 500
+appendInfoLine: wavFile$, tgFile$, file_name$, pitch_min, pitch_max
 
 silence_threshold = 0.03
 voicing_threshold = 0.45
@@ -82,7 +83,7 @@ selectObject: tg
 nInt = Get number of intervals: phon_tier
 
 token_number = 0
-clearinfo
+# clearinfo
 
 appendFile: output_file$, "token_number, wordLabel, vowelLabel, toneNumber, toneStart, toneDuration," 
 for t from 0 to measurement_points
