@@ -122,7 +122,9 @@ for x to nInt
 
     wordStart = Get start time of interval: word_tier, wordInt
     wordEnd = Get end time of interval: word_tier, wordInt
-
+	if wordInt <= 1
+		wordInt = 2
+	endif
     # Get tone numbers for previous and following words; will print as "T" if word has no tone number
     prevWordLabel$ = Get label of interval: word_tier, wordInt - 1
     prevTone$ = replace_regex$ (prevWordLabel$, "[a-zA-Z:punct:]", "", 0)
